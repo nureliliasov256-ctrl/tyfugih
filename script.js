@@ -153,3 +153,36 @@ function drawGame() {
 }
 
 let game = setInterval(drawGame, 120);
+
+function setDir(dir) {
+    if (dir === "up" && direction !== "down") direction = "up";
+    if (dir === "down" && direction !== "up") direction = "down";
+    if (dir === "left" && direction !== "right") direction = "left";
+    if (dir === "right" && direction !== "left") direction = "right";
+}
+
+let touchStartX = 0;
+let touchStartY = 0;
+
+canvas.addEventListener("touchstart", (e) => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+});
+
+canvas.addEventListener("touchmove", (e) => {
+    e.preventDefault(); // убирает скролл
+
+    let dx = e.touches[0].clientX - touchStartX;
+    let dy = e.touches[0].clientY - touchStartY;
+
+    if (Math.abs(dx) > Math.abs(dy)) {
+        if (dx > 0 && direction !== "left") direction = "right";
+        if (dx < 0 && direction !== "right") direction = "left";
+    } else {
+        if (dy > 0 && direction !== "up") direction = "down";
+        if (dy < 0 && direction !== "down") direction = "up";
+    }
+
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+}, { passive: false });

@@ -34,3 +34,56 @@ p {
     margin-top: 12px;
     color: #ddd;
 }
+  
+
+/* 📱 телефон */
+@media (max-width: 768px) {
+
+    body {
+        flex-direction: column;
+        height: auto;
+        padding: 10px;
+    }
+
+    canvas {
+        width: 90vw;
+        height: 90vw;
+    }
+
+    .game-box {
+        width: 100%;
+    }
+
+    .mobile-controls {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 15px;
+        gap: 10px;
+    }
+
+    .mobile-controls div {
+        display: flex;
+        gap: 20px;
+    }
+
+    .mobile-controls button {
+        width: 60px;
+        height: 60px;
+        font-size: 22px;
+        border-radius: 12px;
+        border: none;
+        background: #2d6a4f;
+        color: white;
+    }
+
+    .mobile-controls button:active {
+        transform: scale(0.9);
+        background: #40916c;
+    }
+}
+
+
+canvas {
+    touch-action: none;
+}
